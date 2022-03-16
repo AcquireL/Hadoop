@@ -20,6 +20,7 @@ public class CompressionReadTest extends Configured implements Tool {
     public static void main(String[] args) throws Exception {
         ToolRunner.run(new CompressionReadTest(), args);
     }
+    @Override
     public int run(String[] args) throws Exception {
         Configuration conf=getConf();
         FileSystem fs=FileSystem.get(conf);

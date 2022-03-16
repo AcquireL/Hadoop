@@ -18,6 +18,7 @@ public class Upload extends Configured implements Tool{
         ToolRunner.run(new Upload(), args);
     }
     //上传
+    @Override
     public int run(String[] args) throws Exception {
         Configuration conf=getConf();
         FileSystem fs = FileSystem.get(conf);

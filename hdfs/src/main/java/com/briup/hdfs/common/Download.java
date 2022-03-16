@@ -21,6 +21,7 @@ public class Download extends Configured implements Tool {
         ToolRunner.run(new Download(), args);
     }
     //下载
+    @Override
     public int run(String[] args) throws Exception {
         Configuration conf=getConf();
         FileSystem fs=FileSystem.get(conf);

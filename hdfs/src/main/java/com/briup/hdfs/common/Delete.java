@@ -16,6 +16,7 @@ public class Delete extends Configured implements Tool{
     public static void main(String[] args) throws Exception {
         ToolRunner.run(new Delete(), args);
     }
+    @Override
     @SuppressWarnings("deprecation")
     public int run(String[] args) throws Exception {
         Configuration conf=getConf();

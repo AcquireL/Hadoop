@@ -21,6 +21,7 @@ public class CompressionWriterTest extends Configured implements Tool {
         ToolRunner.run(new CompressionWriterTest(), args);
     }
 
+    @Override
     public int run(String[] args) throws Exception {
         Configuration conf = getConf();
         FileSystem fs = FileSystem.get(conf);

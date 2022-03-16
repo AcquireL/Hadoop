@@ -61,6 +61,7 @@ public class Student implements WritableComparable<Object> {
 		this.weight = new DoubleWritable(weight.get());
 	}
 
+	@Override
 	public int compareTo(Object o) {
 		Student s = (Student) o;
 		int result = (int) (this.weight.get() * 10 - s.weight.get()) * 10;

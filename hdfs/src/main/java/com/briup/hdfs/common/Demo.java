@@ -9,6 +9,7 @@ public class Demo extends Configured  implements Tool{
 		ToolRunner.run(new Demo(), args);
 	}
 
+	@Override
 	public int run(String[] args) throws Exception {
 		
 		return 0;

@@ -19,6 +19,7 @@ public class IntegrityReadTest extends Configured  implements Tool{
 		ToolRunner.run(new IntegrityReadTest(), args);
 	}
 
+	@Override
 	public int run(String[] args) throws Exception {
 		Configuration conf=getConf();
 		FileSystem.get(conf);

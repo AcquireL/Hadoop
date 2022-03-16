@@ -19,6 +19,7 @@ public class IntegrityWriteTest extends Configured implements Tool {
     public static void main(String[] args) throws Exception {
         ToolRunner.run(new IntegrityWriteTest(), args);
     }
+    @Override
     public int run(String[] args) throws Exception {
         Configuration conf=getConf();
         Path rPath=new Path(conf.get("rpath"));

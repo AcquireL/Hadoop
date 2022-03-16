@@ -17,6 +17,7 @@ public class SeqWriterTest
 			"briup briup",
 			"bd1803 bd1803"};
 	
+	@Override
 	public int run(String[] strings)
 		throws Exception {
 		Configuration conf = getConf();
