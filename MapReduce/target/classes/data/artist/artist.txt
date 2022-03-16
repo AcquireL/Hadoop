@@ -1,4 +1,0 @@
-u1	john
-u2	tom
-u3	kai
-u4	marry
