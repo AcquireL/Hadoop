@@ -14,27 +14,27 @@ import org.apache.hadoop.io.compress.CompressionInputStream;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 /*
- * 	°ÑhdfsÏµÍ³ÉÏµÄÑ¹ËõÎÄ¼ş ¶ÁÈ¡µ½±¾µØ£¨×Ô¶¯½âÑ¹£©
+ * 	æŠŠhdfsç³»ç»Ÿä¸Šçš„å‹ç¼©æ–‡ä»¶ è¯»å–åˆ°æœ¬åœ°ï¼ˆè‡ªåŠ¨è§£å‹ï¼‰
  */
 public class CompressionReadTest extends Configured implements Tool {
-	public static void main(String[] args) throws Exception {
-		ToolRunner.run(new CompressionReadTest(), args);
-	}
-	public int run(String[] args) throws Exception {
-		Configuration conf=getConf();
-		FileSystem fs=FileSystem.get(conf);
-		LocalFileSystem lfs=FileSystem.getLocal(conf);
-		FSDataInputStream fis=fs.open(new Path(conf.get("inpath")));
-		FSDataOutputStream fos=lfs.create(new Path(conf.get("outpath")));
-		
-		CompressionCodecFactory factory=new CompressionCodecFactory(conf);
-		CompressionCodec codec=factory.getCodec(new Path(conf.get("inpath")));
-		CompressionInputStream cis=codec.createInputStream(fis);
-		IOUtils.copyBytes(cis, fos, 128,true);
-		
-		return 0;
-	}
-	
-	
+    public static void main(String[] args) throws Exception {
+        ToolRunner.run(new CompressionReadTest(), args);
+    }
+    public int run(String[] args) throws Exception {
+        Configuration conf=getConf();
+        FileSystem fs=FileSystem.get(conf);
+        LocalFileSystem lfs=FileSystem.getLocal(conf);
+        FSDataInputStream fis=fs.open(new Path(conf.get("inpath")));
+        FSDataOutputStream fos=lfs.create(new Path(conf.get("outpath")));
+
+        CompressionCodecFactory factory=new CompressionCodecFactory(conf);
+        CompressionCodec codec=factory.getCodec(new Path(conf.get("inpath")));
+        CompressionInputStream cis=codec.createInputStream(fis);
+        IOUtils.copyBytes(cis, fos, 128,true);
+
+        return 0;
+    }
+
+
 
 }

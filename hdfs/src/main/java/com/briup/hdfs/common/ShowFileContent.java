@@ -9,31 +9,31 @@ import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IOUtils;
 
 /*
- * 	Ê¹ÓÃ×î»ù±¾µÄ·½·¨¶ÁÈ¡hdfsÎÄ¼şÏµÍ³ÉÏµÄÎÄ¼şÄÚÈİ
+ * 	ä½¿ç”¨æœ€åŸºæœ¬çš„æ–¹æ³•è¯»å–hdfsæ–‡ä»¶ç³»ç»Ÿä¸Šçš„æ–‡ä»¶å†…å®¹
  */
 
 public class ShowFileContent {
-	public static void main(String[] args) {
-		//1 »ñÈ¡ÅäÖÃ¶ÔÏó
-		Configuration conf=new Configuration();
-		conf.set("fs.defaultFS","hdfs://192.168.29.132:9000");
-		System.out.println(conf);
-		try {
-			//2 »ñÈ¡µ½ÎÄ¼şÏµÍ³¶ÔÏó
-			FileSystem fs=FileSystem.get(conf);
-		    //3 Ñ¡È¡ºÏÊÊµÄÁ÷Íê³ÉĞèÇó
-			System.out.println(fs.getClass());
-			FSDataInputStream in = fs.open(new Path("/user/hdfs/world.txt"));
-			//FSDataInputStream in=fs.open(new  Path(args[0]));
-			IOUtils.copyBytes(in,System.out,1024);
+    public static void main(String[] args) {
+        //1 è·å–é…ç½®å¯¹è±¡
+        Configuration conf=new Configuration();
+        conf.set("fs.defaultFS","hdfs://192.168.29.132:9000");
+        System.out.println(conf);
+        try {
+            //2 è·å–åˆ°æ–‡ä»¶ç³»ç»Ÿå¯¹è±¡
+            FileSystem fs=FileSystem.get(conf);
+            //3 é€‰å–åˆé€‚çš„æµå®Œæˆéœ€æ±‚
+            System.out.println(fs.getClass());
+            FSDataInputStream in = fs.open(new Path("/user/hdfs/world.txt"));
+            //FSDataInputStream in=fs.open(new  Path(args[0]));
+            IOUtils.copyBytes(in,System.out,1024);
 		/*	String line = null;
 			while((line=in.readLine())!=null) {
 				System.out.println();
 			}*/
-			//¹Ø±ÕÎÄ¼şÁ÷
-			in.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+            //å…³é—­æ–‡ä»¶æµ
+            in.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

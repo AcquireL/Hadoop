@@ -13,31 +13,31 @@ import org.apache.hadoop.fs.RawLocalFileSystem;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
-	//LocalFileSystem      »á¶ÔĞ£ÑéºÍ½øĞĞĞ£Ñé,Í¬Ê±Éú³É ÎÄ¼şÃû.ºó×º.crc
-	//RawLocalFileSystem 	²»»á
+//LocalFileSystem      ä¼šå¯¹æ ¡éªŒå’Œè¿›è¡Œæ ¡éªŒ,åŒæ—¶ç”Ÿæˆ æ–‡ä»¶å.åç¼€.crc
+//RawLocalFileSystem 	ä¸ä¼š
 public class IntegrityWriteTest extends Configured implements Tool {
-	public static void main(String[] args) throws Exception {
-		ToolRunner.run(new IntegrityWriteTest(), args);
-	}
-		public int run(String[] args) throws Exception {
-			Configuration conf=getConf();
-			Path rPath=new Path(conf.get("rpath"));
-			Path lPath=new Path(conf.get("lpath"));
-			RawLocalFileSystem rlfs = new RawLocalFileSystem();
-			rlfs.initialize(URI.create(conf.get("rpath")), conf);
-			FSDataOutputStream rout = rlfs.create(rPath);
-			PrintWriter rpw=new PrintWriter(rout);
-			rpw.println("hhhhhhhhhhhh");
-			rpw.flush();
-			rpw.close();
-			rlfs.close();
-			//------------------------
-			LocalFileSystem lfs = FileSystem.getLocal(conf);
-			FSDataOutputStream lout = lfs.create(lPath);
-			PrintWriter lpw=new PrintWriter(lout);
-			lpw.println("hhhhhhhhhhhh");
-			lpw.flush();
-			lpw.close();
-			return 0;
-		}
+    public static void main(String[] args) throws Exception {
+        ToolRunner.run(new IntegrityWriteTest(), args);
+    }
+    public int run(String[] args) throws Exception {
+        Configuration conf=getConf();
+        Path rPath=new Path(conf.get("rpath"));
+        Path lPath=new Path(conf.get("lpath"));
+        RawLocalFileSystem rlfs = new RawLocalFileSystem();
+        rlfs.initialize(URI.create(conf.get("rpath")), conf);
+        FSDataOutputStream rout = rlfs.create(rPath);
+        PrintWriter rpw=new PrintWriter(rout);
+        rpw.println("hhhhhhhhhhhh");
+        rpw.flush();
+        rpw.close();
+        rlfs.close();
+        //------------------------
+        LocalFileSystem lfs = FileSystem.getLocal(conf);
+        FSDataOutputStream lout = lfs.create(lPath);
+        PrintWriter lpw=new PrintWriter(lout);
+        lpw.println("hhhhhhhhhhhh");
+        lpw.flush();
+        lpw.close();
+        return 0;
+    }
 }

@@ -7,25 +7,25 @@ import java.io.ObjectOutputStream;
 import org.apache.hadoop.io.IntWritable;
 
 public class WritebleTest {
-	public static void main(String[] args) throws IOException {
-		Integer i=new Integer(5);
-		// 5 Í¨¹ıjavaĞòÁĞ»¯³É¶ş½øÖÆÊı¾İ   Õ¼¶àÉÙ×Ö½Ú
-		ByteArrayOutputStream out=new ByteArrayOutputStream();
-		ObjectOutputStream oos=new ObjectOutputStream(out);
-		//oos.write(i);
-		oos.writeObject(i);
-		oos.flush();
-		byte[] ba = out.toByteArray();
-		System.out.println("java ×Ö½ÚÊı£º"+ba.length);
-		oos.close();
-		// 5 Í¨¹ıhadoopĞòÁĞ»¯³É¶ş½øÖÆÊı¾İ  Õ¼¶àÉÙ×Ö½Ú
-		
-		IntWritable iw=new IntWritable(5);
-		ByteArrayOutputStream out2=new ByteArrayOutputStream();
-		ObjectOutputStream oos2=new ObjectOutputStream(out2);
-		iw.write(oos2);
-		byte[] ba2 = out2.toByteArray();
-		System.out.println("hadoop ĞòÁĞ»¯£º"+ba2.length);
-		oos2.close();
-	}
+    public static void main(String[] args) throws IOException {
+        Integer i=new Integer(5);
+        // 5 é€šè¿‡javaåºåˆ—åŒ–æˆäºŒè¿›åˆ¶æ•°æ®   å å¤šå°‘å­—èŠ‚
+        ByteArrayOutputStream out=new ByteArrayOutputStream();
+        ObjectOutputStream oos=new ObjectOutputStream(out);
+        //oos.write(i);
+        oos.writeObject(i);
+        oos.flush();
+        byte[] ba = out.toByteArray();
+        System.out.println("java å­—èŠ‚æ•°ï¼š"+ba.length);
+        oos.close();
+        // 5 é€šè¿‡hadoopåºåˆ—åŒ–æˆäºŒè¿›åˆ¶æ•°æ®  å å¤šå°‘å­—èŠ‚
+
+        IntWritable iw=new IntWritable(5);
+        ByteArrayOutputStream out2=new ByteArrayOutputStream();
+        ObjectOutputStream oos2=new ObjectOutputStream(out2);
+        iw.write(oos2);
+        byte[] ba2 = out2.toByteArray();
+        System.out.println("hadoop åºåˆ—åŒ–ï¼š"+ba2.length);
+        oos2.close();
+    }
 }

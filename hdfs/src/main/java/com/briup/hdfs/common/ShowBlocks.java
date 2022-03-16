@@ -15,8 +15,8 @@ import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
 /*
- * 	展示hdfs文件系统上的文件存放在那个块
- * 
+ * 	灞曠ずhdfs鏂囦欢绯荤粺涓婄殑鏂囦欢瀛樻斁鍦ㄩ偅涓潡
+ *
  */
 
 public class ShowBlocks extends Configured implements Tool {

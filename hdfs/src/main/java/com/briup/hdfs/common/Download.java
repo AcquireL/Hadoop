@@ -12,29 +12,29 @@ import org.apache.hadoop.io.IOUtils;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 /*
- *  	´ÓhdfsÎÄ¼şÏµÍ³ÉÏÏÂÔØÎÄ¼şµ½±¾µØ
- *  
+ *  	ä»hdfsæ–‡ä»¶ç³»ç»Ÿä¸Šä¸‹è½½æ–‡ä»¶åˆ°æœ¬åœ°
+ *
  */
 
 public class Download extends Configured implements Tool {
-	public static void main(String[] args) throws Exception {
-		ToolRunner.run(new Download(), args);
-	}
-	//ÏÂÔØ
-	public int run(String[] args) throws Exception {
-		Configuration conf=getConf();
-		FileSystem fs=FileSystem.get(conf);
-		//inpath Òª´ÓhdfsÎÄ¼şÏµÍ³ÏÂÔØµÄÎÄ¼şµÄÂ·¾¶
-		FSDataInputStream ds=fs.open(new Path(conf.get("inpath")));
-		
-		LocalFileSystem lfs=FileSystem.getLocal(conf);
-		
-		//outpath ·ÅÔÚ±¾µØµÄÎ»ÖÃ ×¢£ºÒªÎªÎÄ¼şÈ¡Ãû
-		FSDataOutputStream os=lfs.create(new Path(conf.get("outpath")));
-		
-		IOUtils.copyBytes(ds, os, 128, true);
-		return 0;
-	}
+    public static void main(String[] args) throws Exception {
+        ToolRunner.run(new Download(), args);
+    }
+    //ä¸‹è½½
+    public int run(String[] args) throws Exception {
+        Configuration conf=getConf();
+        FileSystem fs=FileSystem.get(conf);
+        //inpath è¦ä»hdfsæ–‡ä»¶ç³»ç»Ÿä¸‹è½½çš„æ–‡ä»¶çš„è·¯å¾„
+        FSDataInputStream ds=fs.open(new Path(conf.get("inpath")));
+
+        LocalFileSystem lfs=FileSystem.getLocal(conf);
+
+        //outpath æ”¾åœ¨æœ¬åœ°çš„ä½ç½® æ³¨ï¼šè¦ä¸ºæ–‡ä»¶å–å
+        FSDataOutputStream os=lfs.create(new Path(conf.get("outpath")));
+
+        IOUtils.copyBytes(ds, os, 128, true);
+        return 0;
+    }
 
 
 }

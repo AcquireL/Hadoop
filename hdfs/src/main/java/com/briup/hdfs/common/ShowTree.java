@@ -9,53 +9,53 @@ import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
 public class ShowTree extends Configured implements Tool{
-	FileSystem fs;
-	public static void main(String[] args) throws Exception {
-		ToolRunner.run(new ShowTree(), args);
-		
-	}
-	public int run(String[] args) throws Exception {
-		Configuration conf=getConf();
+    FileSystem fs;
+    public static void main(String[] args) throws Exception {
+        ToolRunner.run(new ShowTree(), args);
+
+    }
+    public int run(String[] args) throws Exception {
+        Configuration conf=getConf();
 		/*Configuration conf=new Configuration();
 		conf.set("fs.defaultFS", "hdfs://192.168.29.132:9000");*/
-		System.out.println(conf);
-		fs = FileSystem.get(conf);
-		//ÄÃµ½Ä³¸öÂ·¾¶ÏÂµÄËùÓĞÄ¿Â¼ºÍ×ÓÎÄ¼şµÄÔªÊı¾İ
-		FileStatus[] list = fs.listStatus(new Path(conf.get("path")));
-		//FileStatus[] list=fs.listStatus(new Path("/"));
-		//System.out.println(list[4]);
-		//show(list);
-		for(FileStatus fs:list) {
-			show(fs);
-		}
-		return 0;
-	}
-	public void show(FileStatus sta) {
-		if(sta.isFile()&&sta.getLen()>0) {
-			showDetail(sta);
-		}else if(sta.isDirectory()){
-			//»ñµÃµ½¸ÃÄ¿Â¼ÏÂµÄÒ»¼¶ÎÄ¼şµÄÔªÊı¾İ
-			//¼ÌĞø¶ÔÃ¿¸öÔªÊı¾İµ÷ÓÃshow
+        System.out.println(conf);
+        fs = FileSystem.get(conf);
+        //æ‹¿åˆ°æŸä¸ªè·¯å¾„ä¸‹çš„æ‰€æœ‰ç›®å½•å’Œå­æ–‡ä»¶çš„å…ƒæ•°æ®
+        FileStatus[] list = fs.listStatus(new Path(conf.get("path")));
+        //FileStatus[] list=fs.listStatus(new Path("/"));
+        //System.out.println(list[4]);
+        //show(list);
+        for(FileStatus fs:list) {
+            show(fs);
+        }
+        return 0;
+    }
+    public void show(FileStatus sta) {
+        if(sta.isFile()&&sta.getLen()>0) {
+            showDetail(sta);
+        }else if(sta.isDirectory()){
+            //è·å¾—åˆ°è¯¥ç›®å½•ä¸‹çš„ä¸€çº§æ–‡ä»¶çš„å…ƒæ•°æ®
+            //ç»§ç»­å¯¹æ¯ä¸ªå…ƒæ•°æ®è°ƒç”¨show
 		/*	try {
 				Stream.of(fs.listStatus(sta.getPath())).forEach(this::show));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}*/
-			showDetail(sta);
-			System.out.println("-------------------");
-			try {
-				FileStatus[] substas = fs.listStatus(sta.getPath());
-				for(FileStatus substa:substas) {
-					show(substa);
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			} 
-		} 
-	}
-	private void showDetail(FileStatus sta) {
-		System.out.println(sta.getPath()+"   "+sta.getLen()+"  "
-				+sta.getOwner()+"  "+sta.getAccessTime());
-	}
-	
+            showDetail(sta);
+            System.out.println("-------------------");
+            try {
+                FileStatus[] substas = fs.listStatus(sta.getPath());
+                for(FileStatus substa:substas) {
+                    show(substa);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    private void showDetail(FileStatus sta) {
+        System.out.println(sta.getPath()+"   "+sta.getLen()+"  "
+                +sta.getOwner()+"  "+sta.getAccessTime());
+    }
+
 }

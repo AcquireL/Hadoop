@@ -14,31 +14,31 @@ import org.apache.hadoop.io.compress.CompressionOutputStream;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 /*
- * 	°Ñ±¾µØÎÄ¼şÑ¹Ëõ·ÅÈëhdfsÎÄ¼şÏµÍ³
+ * 	æŠŠæœ¬åœ°æ–‡ä»¶å‹ç¼©æ”¾å…¥hdfsæ–‡ä»¶ç³»ç»Ÿ
  */
 public class CompressionWriterTest extends Configured implements Tool {
-	public static void main(String[] args) throws Exception {
-		ToolRunner.run(new CompressionWriterTest(), args);
-	}
+    public static void main(String[] args) throws Exception {
+        ToolRunner.run(new CompressionWriterTest(), args);
+    }
 
-	public int run(String[] args) throws Exception {
-		Configuration conf = getConf();
-		FileSystem fs = FileSystem.get(conf);
-		LocalFileSystem lfs = FileSystem.getLocal(conf);
-		// java ---->hdfs
-		FSDataOutputStream hout = fs.create(new Path(conf.get("outpath")));
-		// local ---->java
-		FSDataInputStream lin = lfs.open(new Path(conf.get("inpath")));
-		// Ôö¼ÓÑ¹Ëõ¹¦ÄÜ
-		// ÀûÓÃCompressCodec°ü×°hout
-		// Îª´øÓĞÑ¹Ëõ¹¦ÄÜÊä³öÁ÷
-		// ÀûÓÃ¹¤³§Ä£Ê½¿ÉÒÔ»ñµÃCompressCodec
-		CompressionCodecFactory factory = new CompressionCodecFactory(conf);
-		// ÎªºÎÒª´«Êä³öÂ·¾¶£¬ÓÃÎÄ¼şºó×ºÃûÍ¨ÖªcodecÑ¹ËõËã·¨ÊÇÊ²Ã´
-		CompressionCodec codec = factory.getCodec(new Path(conf.get("outpath")));
-		CompressionOutputStream chout = codec.createOutputStream(hout);
-		IOUtils.copyBytes(lin, chout, 128, true);
-		return 0;
-	}
+    public int run(String[] args) throws Exception {
+        Configuration conf = getConf();
+        FileSystem fs = FileSystem.get(conf);
+        LocalFileSystem lfs = FileSystem.getLocal(conf);
+        // java ---->hdfs
+        FSDataOutputStream hout = fs.create(new Path(conf.get("outpath")));
+        // local ---->java
+        FSDataInputStream lin = lfs.open(new Path(conf.get("inpath")));
+        // å¢åŠ å‹ç¼©åŠŸèƒ½
+        // åˆ©ç”¨CompressCodecåŒ…è£…hout
+        // ä¸ºå¸¦æœ‰å‹ç¼©åŠŸèƒ½è¾“å‡ºæµ
+        // åˆ©ç”¨å·¥å‚æ¨¡å¼å¯ä»¥è·å¾—CompressCodec
+        CompressionCodecFactory factory = new CompressionCodecFactory(conf);
+        // ä¸ºä½•è¦ä¼ è¾“å‡ºè·¯å¾„ï¼Œç”¨æ–‡ä»¶åç¼€åé€šçŸ¥codecå‹ç¼©ç®—æ³•æ˜¯ä»€ä¹ˆ
+        CompressionCodec codec = factory.getCodec(new Path(conf.get("outpath")));
+        CompressionOutputStream chout = codec.createOutputStream(hout);
+        IOUtils.copyBytes(lin, chout, 128, true);
+        return 0;
+    }
 
 }
